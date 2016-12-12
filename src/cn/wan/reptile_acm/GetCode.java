@@ -82,6 +82,7 @@ public class GetCode {
                     urlnext=matcher.group();
                 }
 
+
 //                test
                 System.out.println("http://"+host+"/"+urlnext);
 
