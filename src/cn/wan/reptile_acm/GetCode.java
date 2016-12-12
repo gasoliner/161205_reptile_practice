@@ -38,7 +38,6 @@ public class GetCode {
 
     public CloseableHttpResponse sendRequest(String url) throws IOException {
         HttpGet httpGet=new HttpGet(url);
-//        httpGet.setHeader("Cookie"," _gat=1; PHPSESSID=6dnk3v74u20cngj2eh8bc4e992; Hm_lvt_ffc0a3cbaca7823cf2e81a8611a92d93=1481453788,1481460206,1481517419; Hm_lpvt_ffc0a3cbaca7823cf2e81a8611a92d93=1481517896; _ga=GA1.3.368584434.1481453788; refer=http%3A%2F%2Facm.sdut.edu.cn%2Fonlinejudge2%2Findex.php%2FHome%2FContest%2Fcontestlist");
         if (cookie!=null){
             httpGet.setHeader("Cookie",cookie);
         }
