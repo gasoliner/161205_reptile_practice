@@ -37,7 +37,8 @@ public class GetCode {
     }
 
     public CloseableHttpResponse sendRequest(String url) throws IOException {
-        HttpGet httpGet=new HttpGet(url);
+
+        HttpGet httpGet=new HttpGet(dealURL(url));
         if (cookie!=null){
             httpGet.setHeader("Cookie",cookie);
         }
@@ -62,30 +63,17 @@ public class GetCode {
         if (matcher.find()){
             urlcode=matcher.group();
             isURLCodeFind=true;
-
-//            test
-            System.out.println("http://"+host+"/"+urlcode);
-
             return "http://"+host+"/"+urlcode;
         }else{
             pattern=Pattern.compile("/onlinejudge2/index\\.php/Contest/conteststatus/cid/\\d*/pid/\\d*/result/1/p/\\d*\\.html\">下一页");
             matcher=pattern.matcher(txt);
             if (matcher.find()){
                 txt=matcher.group();
-
-                System.out.println(txt);
-
-
                 pattern=Pattern.compile("/onlinejudge2/index\\.php/Contest/conteststatus/cid/\\d*/pid/\\d*/result/1/p/\\d*\\.html");
                 matcher=pattern.matcher(txt);
                 if (matcher.find()){
                     urlnext=matcher.group();
                 }
-
-
-//                test
-                System.out.println("http://"+host+"/"+urlnext);
-
                 return "http://"+host+"/"+urlnext;
             }else {
 //                最后一页的情况
@@ -106,6 +94,10 @@ public class GetCode {
     public void stopAllResource() throws IOException {
         httpClient.close();
         response.close();
+    }
+
+    public String dealURL(String url){
+        return url.trim();
     }
 
 
